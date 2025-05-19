@@ -1,0 +1,77 @@
+.LoginBody{
+    display: flex;
+    margin: 4vh 15vw 0 15vw;
+    flex-direction: column;
+    
+}
+
+.LBInputArea{
+    width: 100%;
+    border: 0.15vw #FF9191 solid;
+    border-radius: 0.5vw;
+    padding: 2vw 2.2vw 2vw 3vw;
+}
+
+.LBTitle{
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 1.25vw;
+    line-height: 1.25vw;
+    margin-bottom: 1vw;
+}
+
+.LBIArow{
+    display: flex;
+    margin-top: 1vw;
+    align-items: center;  /* 垂直置中 */
+}
+
+.LBIATitle{
+    width: 10%;
+    font-size: 1.25vw;
+    line-height: 1.25vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.LBIAtext{
+    width: 90%;
+    padding-right: 2.5vw;
+}
+
+.LBIAtext input{
+    width: 100%;
+    border-radius: 0.5vw;
+    width: 100%;
+    font-size: 1.25vw;
+    line-height: 1.25vw;    
+    height: 2.5vw;
+    font-weight: bold;
+    margin: 0 auto;
+    border: none;
+    color: #A09E9E;
+    padding: 1vw 1.3vw;
+    border: #ED8A8A 0.15vw solid;
+}
+
+.LBIAtext input:focus{
+    border: #ED8A8A 0.15vw solid;
+}
+
+.LBIAConfirmButtom{
+    padding: 0.8vw 1.3vw;
+    background-color: #ED8A8A;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25vw;
+    line-height: 1.25vw;
+    border-radius: 0.5vw;
+    margin-top: 2.5vw;
+    margin-left: auto;
+    transition: color 0.2s ease-in-out; 
+}
+
+.LBIAConfirmButtom:hover{
+    color: rgb(84, 49, 49);
+}

@@ -1,0 +1,243 @@
+
+body{
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}   
+
+.BottomBarAreaCss{
+    height: 11.5vw;
+    width: 100%;
+    background-color: #ED8A8A;
+    position: absolute;
+    bottom: 0;
+    float: inline-end;
+    z-index: 1;
+}
+
+
+.BottomText{
+    font-size: 1.85vw;
+    line-height: 1.85vw;
+    padding-top:1.5vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.BText_Title{
+    color: #FFFFFF;
+    font-size: 1.25vw;
+    line-height: 1.25vw;
+    font-weight: bold;
+}
+
+.BText_content{
+    color: #FFFFFF;
+    font-size: 1.25vw;
+    line-height: 1.25vw;
+    margin-top: 0.5vw;
+    font-weight: lighter;
+}
+
+.BText_content a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.BText_content :hover{
+    color: rgb(134, 77, 77);
+}
+
+.BText_content button {
+    all: unset; /* 移除 button 預設樣式 */
+    display: inline; /* 確保與普通文字一樣排列 */
+    cursor: pointer; /* 讓它仍然可以點擊 */
+}
+
+.BottomLogo{
+    height: 5vw;
+    width: auto;
+}
+
+.TopLogo{
+    position: relative;
+    height: 4.4vw;
+    width: auto;
+}
+
+.TopBarCategory{
+    background-color:rgb(249, 249, 249);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    /* top: 0px; */
+    width: 100%;
+    margin: 0 auto;
+    border-top: solid #ED8A8A 0.15vw ;
+    border-bottom: solid #ED8A8A 0.15vw ;
+    /* box-shadow: 0 0.05vw 0.4vw black; */
+    height: 4.1vw;
+    padding: 0.75vw 0;
+    align-items: center;  /* 垂直置中 */
+}
+
+.TBCList{
+    display: flex;
+    margin: 0 auto
+}
+
+.TBCListTypes{
+    font-size: 1.4vw;
+    line-height: 1.4vw;
+    color: #ED8A8A;
+    font-weight: bold;
+}
+
+.TBCListTypes a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.TBCListTypes :hover{
+    color: #ac6262;
+}
+
+
+.TopBarListCss{
+    background-color:#ED8A8A;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    top: 0px;
+    width: 100%;
+    margin: 0 auto;
+    /* border: solid black 0.15vw ;
+    box-shadow: 0 0.05vw 0.4vw black; */
+    height: 5.95vw;
+    padding: 0.75vw 0;
+    align-items: center;  /* 垂直置中 */
+}
+
+.TopBarTextRightCss{
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.TopBarTextLeftCss{
+    padding-left: 2vw;
+} 
+
+
+.RightCss{
+    font-size: 1.25vw;
+    line-height: 1.25vw;
+    height: 2.05vw; 
+    color:#FFFFFF;
+    font-weight: bold;
+    padding-top:0.4vw;
+    padding-bottom: 0.4vw;
+    padding-right: 1.15vw;
+    position: relative;
+    display: flex;
+    align-self: center; 
+}
+
+.RightCss a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.RightCss button {
+    all: unset; /* 移除 button 預設樣式 */
+    display: inline; /* 確保與普通文字一樣排列 */
+    cursor: pointer; /* 讓它仍然可以點擊 */
+}
+
+.TopBarTextLeftCss ul{
+    /* padding-top:0.4vw;
+    padding-bottom: 0.4vw; */
+    display: flex;
+    list-style-type:none;
+    margin:auto;
+    align-items: center;
+    
+}
+
+.TopBarTextLeftCss li{
+    padding-right: 2.5vw;
+
+}
+
+.TopBarTextLeftCss a{
+    direction: none;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.TBSearchBox{
+    font-size: 1.25vw;
+    line-height: 1.25vw;
+    height: 1.25vw;
+    color: #A09E9E;
+    width: 80%;
+    display: flex;
+}
+
+.TBSearchBox input{
+    border-radius: 1vw;
+    width: 100%;
+    font-size: 1.25vw;
+    line-height: 1.25vw;
+    height: 1.25vw;
+    /* font-weight: bold; */
+    margin: 0 auto;
+    border: none;
+    color: #A09E9E;
+    padding: 0 0 0 0.3vw;
+}
+
+.TBSearchBox input:focus{
+    outline: none;
+}
+
+li button{
+    background-color: white;
+    border: none;
+}
+
+li button:hover{
+    background-color: white;
+    border: none;
+}
+
+.RightCss :hover{
+    color: rgb(84, 49, 49);
+}
+
+.CartCss{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 8vw;
+    
+}
+.CartCss .btn{
+    border-radius: 0; /* 将按钮的圆角设置为 0 */
+    border: none;
+    height: 100%;
+    width: 9vw;
+    color: #ED8A8A;
+    background-color: white;
+    font-size: 1.25vw;
+    line-height: 1.25vw;
+    padding: 1vw 0;
+    border-radius: 0.8vw;
+    font-weight: bold;
+    margin-right: 2vw;
+}
+
+.CartCss .btn:hover{
+    background-color: white;
+    color: rgb(84, 49, 49);
+}

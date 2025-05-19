@@ -1,0 +1,105 @@
+.GDComment {
+    display: flex;
+    margin: 4vh 15vw 0 15vw;
+    flex-direction: column;
+    /*border: 2px solid black;*/
+}
+
+.GDCommentTitle {
+    font-size: 1.25vw;
+    margin-left: 5vw;
+    margin-bottom: 2vh;
+    font-weight: bold;
+}
+
+
+.GDCommentTable {
+    border-collapse: collapse;
+}
+
+.GDCommentTable th {
+    width: 69vw;
+    height: auto;
+    background-color: #ED8A8A;
+    font-size: 1.25vw;
+    color: #ffffff;
+    padding: 0.8vw 1.3vw;
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.GDCommentTable td {
+    border: 1vw #ED8A8A;
+    background-color: #ffffff;
+    padding: 0.8vw 1.3vw;
+}
+
+.GDCommentBody>tr {
+    border-style: inset;
+    border-bottom: 0.3vh  solid #ED8A8A;
+    border-right: 0.3vh solid #ED8A8A;
+    border-left: 0.3vh solid #ED8A8A;
+}
+
+.GDCommentth {
+    display: flex;
+    flex-direction: row;
+}
+
+.star {
+    color: #ffea98;
+}
+
+.GDCommentRateArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 2vw;
+}
+
+.GDCommentFilterBotton button{
+    padding: 0.8vw 1.3vw;
+    background-color: white;
+    border: none;
+    color: #ED8A8A;
+    font-weight: bold;
+    font-size: 1.25vw;
+    line-height: 1.25vw;
+    border-radius: 0.5vw;
+    margin-top: 0.5vw;
+    margin-right: 1vw;
+    transition: color 0.2s ease-in-out;
+}
+
+.GDCommentFilterBotton button:hover {
+    color: rgb(84, 49, 49);
+}
+
+.GDCommentUser {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1vw;
+}
+
+.GDCommentUser img {
+    margin: 2vw;
+}
+
+.GDCommentUserInfo {
+    align-items: center;
+    margin-bottom: 0.35vw;
+}
+
+.GDCommentUserRate {
+    display: flex;
+}
+
+.GDCommentUserRScore {
+    font-size: 1vw;
+    margin-bottom: 0.5vw;
+    color: #fbc02d ;
+}
+
+.GDCommentUserCommentTime {
+    margin-left: 40vw;
+}

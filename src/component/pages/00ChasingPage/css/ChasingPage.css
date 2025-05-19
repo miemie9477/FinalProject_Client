@@ -1,0 +1,96 @@
+.ChasingBody{
+    display: flex;
+    margin: 4vh 15vw 0 15vw;
+    flex-direction: column;
+    
+}
+
+
+.CBInputArea {
+    position: relative;
+    width: 100%;
+    border: 0.15vw #FF9191 solid;
+    padding: 0; /* 把 padding 移除，圖片才會剛好填滿 */
+    height: 12vw;
+    overflow: hidden; /* 避免圖片溢出 */
+  }
+  
+
+
+
+/*設定按鈕*/
+.CBIASettingButtom {
+    margin-top: 0;
+    height: 2.5vw;
+    line-height: 2.5vw; 
+    padding: 0 1.3vw;
+    background-color: white;
+    border:0.15vw solid #ED8A8A;
+    color: black;
+    font-weight: bold;
+    font-size: 1.25vw;
+    border-radius: 0.5vw;
+    transition: color 0.2s ease-in-out;
+    margin-left: 0;
+}
+
+.CBIASettingButtom:hover{
+    color: rgb(210, 10, 10);
+}
+/*追蹤商品按鈕*/
+.CBIAFollowButtom {
+    margin-top: 0;
+    height: 2.5vw;
+    line-height: 2.5vw; 
+    padding: 0 1.3vw;
+    background-color: #ED8A8A;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25vw;
+    border-radius: 0.5vw;
+    transition: color 0.2s ease-in-out;
+    margin-left: 0;
+}
+
+.CBIAFollowButtom:hover{
+    color: rgb(84, 49, 49);
+}
+
+/*取消追蹤商品按鈕*/
+.CBIAUnfollowButtom {
+    position: absolute;
+    right: 1vw;
+    bottom: 1vw;
+    margin: 0;
+    height: 2.5vw;
+    line-height: 2.5vw;
+    padding: 0 1.3vw;
+    background-color: #ED8A8A;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.25vw;
+    border-radius: 0.5vw;
+    transition: color 0.2s ease-in-out;
+}
+
+.CBIAUnfollowButtom:hover{
+    color: rgb(84, 49, 49);
+}
+
+
+
+.Chr-line {
+    all: unset;
+    display: block;
+    height: 1.5px;
+    background-color: #ED8A8A;
+    margin: 0.5vw 0 1vw 0;
+    width: 100%;
+  }
+  
+
+  
+  
+  
