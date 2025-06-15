@@ -1,56 +1,40 @@
-import "./css/ChasingPage.css"
+import "./css/ChasingPage.css";
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import a0001 from './pic/a0001.jpg'; // 根據你的位置調整路徑
+import ex1 from './pic/ex1.png'; // 根據你的位置調整路徑
 
+const ChasingBody = ({ pNo }) => {
+  return (
+    <div className="ChasingBody">
+      <div style={{ display: "flex", gap: "0.5vw" }}>
+        <NavLink to="/SettingPage">
+          <button className="CBIASettingButtom">設定</button>
+        </NavLink>
+        <NavLink to="/ChasingPage">
+          <button className="CBIAFollowButtom">追蹤商品</button>
+        </NavLink>
+      </div>
 
-const FixStyle = {
-    position: "relative"
-}
+      <hr className="Chr-line" />
 
-const ChasingBody = ({pNo}) => {
+      <div className="CBInputArea">
+        <div className="product-card">
+          <img src={ex1} alt="商品圖片" className="product-image" />
 
-
-    return (
-
-
-        <div className="ChasingBody">
-
-           <div style={{ display: "flex", gap: "0.5vw" }}>
-            <NavLink to="/SettingPage"><button className="CBIASettingButtom">設定</button></NavLink>
-            <NavLink to="/ChasingPage"><button className="CBIAFollowButtom">追蹤商品</button></NavLink>
-           </div>
-
-           <hr className="Chr-line" />
-
-           <div className="CBInputArea">
-            <img
-              src={a0001}
-              alt="商品圖片"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block"
-              }}
-            />
-            <button
-              className="CBIAUnfollowButtom"
-              style={{
-                position: "absolute",
-                bottom: "0.5vw",
-                right: "0.5vw"
-              }}
-            >
-              取消追蹤
-            </button>
+          <div className="product-info">
+            <div className="product-brand">品牌名</div>
+            <div className="product-name">商品名稱</div>
+            <div className="product-price">
+              <span className="original-price">原價 $1000</span>
+              <span className="special-price">特價 $799</span>
+            </div>
+            <div className="product-rating">⭐ 4.5</div>
           </div>
-          
         </div>
-      );
-    };
 
-  
+        <button className="CBIAUnfollowButtom">取消追蹤</button>
+      </div>
+    </div>
+  );
+};
 
-export default ChasingBody
+export default ChasingBody;

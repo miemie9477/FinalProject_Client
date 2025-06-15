@@ -1,5 +1,7 @@
 import { HashRouter, Routes, Route, Link, withRouter } from "react-router-dom";
 import { LoginProvider } from "./ContextAPI";
+import { PidProvider } from "./ContextAPI";
+import { SearchdataProvider } from "./ContextAPI";
 import ScrollToTop from "./ScrollToTop";
 import ProtectedRoute from './ProtectedRoute';
 import LoginPage from "./component/pages/00LoginPage/LoginPage";
@@ -16,6 +18,8 @@ function App() {
   return (
     <HashRouter basename="/">
       <LoginProvider>
+      <PidProvider>
+      <SearchdataProvider>
         <ScrollToTop /> 
         <Routes>
           <Route index element = {<HomePage/>}/>
@@ -29,6 +33,8 @@ function App() {
           {/* ↑↑新增Route時，path會決定你的頁面網址，element則是放你的頁面組件，比如說上面這個頁面它的網址就會是http://localhost:3000/#/ExamplePage */}
 
         </Routes>
+      </SearchdataProvider>
+      </PidProvider>
       </LoginProvider>
     </HashRouter>
   );

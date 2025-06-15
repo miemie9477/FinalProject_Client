@@ -23,18 +23,39 @@ p {
     justify-content: center;
 }
 
+.SRFilterText{
+    font-size: 1.5vw;
+    line-height: 1.5vw;
+    font-weight: bold; 
+}
+
+.css-3be1l6 {
+    height: '2.5vw';
+}
+
+.css-1xc3v61-indicatorContainer {
+    padding: 0  !important;
+}
+
 .SRFilterRange {
     display: flex;
     flex-direction: row;
     margin: 0.5vw;
-    align-items: flex-start;
+    /* align-items: flex-start; */
+    align-items: center;
+}
+
+.SRFilterRangeText{
+    font-size: 1.5vw;
+    line-height: 1.5vw;
+    font-weight: bold; 
 }
 
 .SRFilterRangeMin {
     display: flex;
     margin-left: -2.5vw;
     margin-right: -3vw;
-    margin-top: 0.5vh;
+    /* margin-top: 0.5vh; */
     max-width: 20vw
 }
 
@@ -42,7 +63,7 @@ p {
     display: flex;
     margin-left: -3vw;
     margin-right: -2.5vw;
-    margin-top: 0.5vh;
+    /* margin-top: 0.5vh; */
     max-width: 20vw
 }
 
@@ -93,7 +114,7 @@ p {
     align-content: flex-start;
     border-radius: 0.5vw;
     transition: color 0.2s ease-in-out; 
-    margin-top: 0.5vh;
+    /* margin-top: 0.5vh; */
 }
 
 .SRFilterRangeConfirmButtom:hover{
@@ -119,7 +140,7 @@ img {
 }
 
 .SRDProBrand {
-    font-size: 0.92vw;
+    font-size: 0.9vw;
     margin-top: 1.5vh;
 }
 

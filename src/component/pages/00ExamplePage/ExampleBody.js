@@ -1,27 +1,35 @@
 import "./css/ExamplePage.css"
-// ↑↑這邊上面import的css文件名記得改
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+// ↓↓使用時需要新增的部分
+import { useContext } from 'react';
+import { PidProvider } from "../../../ContextAPI";
 
 const FixStyle = {
     position: "relative"
 }
 
 const ExampleBody = () => {
-// ↑↑這邊上面變數名記得改成跟文件名一樣
+
+    const ButtonFunc_setPid = () =>{
+        setPid("p12345")
+    }
+
+    // ↓↓使用時需要新增的部分，取用pid: pid，變更pid: setPid
+    const { pid, setPid } = useContext(LoginContext);
 
     return(
-        <div className="ExampleBody"> {/* className 請寫成單字首字母大寫的形式 */}
+        <div className="ExampleBody"> 
             
-            <div className="EBYourCodeHere"> {/* 內層的 className 請加上上層 className 的首字母大寫*/}
-                {/* ↑↑比如說上面這個className，因為外層有className="ExampleBody，所以在前面加上EB */}
+            <div className="EBYourCodeHere"> 
 
-                YourCodeHere
+                <button onClick={ButtonFunc_setPid}>某個商品</button>
             </div>
 
         </div>
     );
 }
   
-// ↓↓這邊下面變數名記得改成跟文件名一樣
+
 export default ExampleBody

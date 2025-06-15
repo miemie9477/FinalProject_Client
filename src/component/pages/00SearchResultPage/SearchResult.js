@@ -1,20 +1,22 @@
 /* eslint-disable react/style-prop-object */
 import "./css/SearchResult.css"
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Select from 'react-select';
 import { ImStarFull } from "react-icons/im";
 import { NavLink } from "react-router-dom";
-
+import { SearchdataContext } from "../../../ContextAPI";
 const FixStyle = {
     position: "relative"
 }
 
 const SearchResult = () => {
 
+
     const selectOptionStyles = {
         menu: (provide) => ({
             ...provide,
-            width: 100,
+            width: "14.5vw",
+            marginTop: '0vw'
         }),
         control: (provided, state) => ({ /*選擇框*/
             ...provided,
@@ -22,40 +24,73 @@ const SearchResult = () => {
             border: '0.15vw solid #ED8A8A',
             boxShadow: 'none',
             '&:hover': { borderColor: 'rgb(84, 49, 49)', },
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
             width: '14vw',
-            minHeight: '2vh',
-            fontSize: '1.5vw',
-            padding: '0.1vw',
+            minWidth: '75px',
+            height: '2.5vw',
+            minHeight: '1.25vw',
+            fontSize: '1.25vw',
+            //padding: '0.1vw',
             marginLeft: '0.5vw',
             marginRight: '0.5vw',
-            marginTop: '-0.5vw',
-            marginBottom: '0.5vw',
+            marginTop: '0vw',
+            // marginBottom: '0.5vw',
+            borderRadius: '0.5vw'
         }),
         option: (provided, state) => ({ /*每個選項*/
             ...provided,
             backgroundColor: state.isSelected ? 'rgb(245, 183, 183)'
                 : state.isFocused ? '#eee' : 'white',
             color: 'black',
-            fontSize: 12,
+            fontSize: '1.25vw',
             padding: '0.5vw',
         }),
         indicatorSeparator: (provided, state) => ({ /*箭頭和輸入框的分隔線*/
-            display: 'none',
-            fontSize: '2vw',
+            //display: 'none',
+            fontSize: '1.2vw',
+            padding: 0,
+            height: '50%',
+            alignItems: 'center',
+            // backgroundColor:"black"
+            // display: 'none',
         }),
         valueContainer: (provided) => ({
             ...provided,
-            padding: '0',
-            height: 20,
+            margin: 0,
+            padding: 0,
+            fontSize: '1.2vw',
+            alignItems: 'center',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            // height: '100%',
         }),
         indicatorsContainer: (provided) => ({
             ...provided,
-            height: 20,
+            padding: 0,
+            fontSize:"1vw"
+        }),
+        dropdownIndicator: (provided) => ({
+            ...provided,
+            padding: "0 0.5vw 0 0",
+            svg: {
+                width: '1.25vw',
+                height: '1.25vw',
+            }
         }),
     }
 
+    // 1. 使用 SearchdataContext 中的 Searchdata
+    const { Searchdata, setSearchdata } = useContext(SearchdataContext);
+
+    // Filter and Sort states
     const [CommentSelectedOption, setCommentSelectedOption] = useState(null);
     const [PriceSelectedOption, setPriceSelectedOption] = useState(null);
+    const [priceMin, setPriceMin] = useState('');
+    const [priceMax, setPriceMax] = useState('');
+    const [isFiltered, setIsFiltered] = useState(false);
 
     const CommentOptions = [
         { value: 'option0', label: '評論' },
@@ -75,47 +110,65 @@ const SearchResult = () => {
         setPriceSelectedOption(selected);
     };
 
-    const images = [
-        require('./pic/ex1.png'),
-    ];
+    //const [originalData, setOriginalData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
 
-    const product = {
-        brand: '品牌名',
-        name: '商品名',
-        originalPrice: '原價',
-        discountPrice: '特價',
-        rating: 4.5,
+    useEffect(() => {
+        if (Searchdata) {
+            setFilteredData(Searchdata); // 初始時，過濾後的數據就是原始數據
+            setIsFiltered(false); // 重置過濾狀態
+            // 由於 Searchdata 來自 context，它會根據搜尋結果自動更新
+        }
+    }, [Searchdata]); // 依賴 Searchdata 的變化
+
+    const applyFilters = () => {
+        console.log("Debug: Searchdata 的內容是:", Searchdata);
+        let data = [...Searchdata];
+
+        // 1. 價格篩選
+        const min = parseFloat(priceMin);
+        const max = parseFloat(priceMax);
+        if (!isNaN(min)) {
+            data = data.filter(item => item.price >= min);
+        }
+        if (!isNaN(max)) {
+            data = data.filter(item => item.price <= max);
+        }
+
+        // 2. 排序
+        if (CommentSelectedOption?.value === 'option1') {
+            data.sort((a, b) => b.review - a.review); // 高到低
+        } else if (CommentSelectedOption?.value === 'option2') {
+            data.sort((a, b) => a.review - b.review); // 低到高
+        }
+
+        if (PriceSelectedOption?.value === 'option4') {
+            data.sort((a, b) => b.price - a.price); // 價格高到低
+        } else if (PriceSelectedOption?.value === 'option5') {
+            data.sort((a, b) => a.price - b.price); // 價格低到高
+        }
+
+        setFilteredData(data);
+        setIsFiltered(true);
     };
 
-    const productDetails = [
-        { label: '品牌名', value: product.brand, className: 'SRDProBrand' },
-        { label: '商品名', value: product.name, className: 'SRDProName' },
-        {
-            label: '價格',
-            value: (
-                <div className="SRDProPrice">
-                    <span className="SRDProOriPrice">{product.originalPrice}</span>
-                    <span className="SRDProDiscount">{product.discountPrice}</span>
-                </div>
-            ),
-            className: 'SRDProPrice',
-        },
-        {
-            label: '評價',
-            value: (
-                <div className="SRDProRate">
-                    <ImStarFull size={15} color="gold" />
-                    <span className="SRDProRScore">&nbsp;{product.rating}</span>
-                </div>
-            ),
-            className: 'SRDProRate',
-        },
-    ];
+    useEffect(() => {
+        // 只有當篩選或排序選項被選擇時才應用過濾，或當價格區間有輸入時
+        if (CommentSelectedOption?.value !== 'option0' || PriceSelectedOption?.value !== 'option3' || priceMin !== '' || priceMax !== '') {
+            applyFilters();
+        } else {
+            // 如果所有篩選條件都重置為預設或清空，則顯示原始的 Searchdata
+            setFilteredData(Searchdata);
+            setIsFiltered(false);
+        }
+    }, [CommentSelectedOption, PriceSelectedOption, priceMin, priceMax, Searchdata]); // 加上 Searchdata 作為依賴項
+
+    const displayData = isFiltered ? filteredData : Searchdata;
 
     return (
         <div className="SearchResult">
             <div className="SRFilter">
-                <p>進階篩選</p>
+                <div className="SRFilterText">進階篩選</div>
                 <div className="SRFilterComment">
                     <Select
                         value={CommentSelectedOption}
@@ -135,34 +188,57 @@ const SearchResult = () => {
                     />
                 </div>
                 <div className="SRFilterRange">
-                    <p>價格區間</p>
+                    <div className="SRFilterRangeText">價格區間</div>
                     <div className="SRFilterRangeMin">
-                        <input type="text" placeholder="$ 最小值" />
+                        <input
+                            type="text"
+                            placeholder="$ 最小值"
+                            value={priceMin}
+                            onChange={(e) => setPriceMin(e.target.value)}
+                        />
                     </div>
-                    <p>—</p>
+                    <div className="SRFilterRangeText">-</div>
                     <div className="SRFilterRangeMax">
-                        <input type="text" placeholder="$ 最大值" />
+                        <input
+                            type="text"
+                            placeholder="$ 最大值"
+                            value={priceMax}
+                            onChange={(e) => setPriceMax(e.target.value)}
+                        />
                     </div>
-                    <button className="SRFilterRangeConfirmButtom">套用</button>
+                    {/* 移除這裡的 applyFilters 按鈕，因為我們會在 useEffect 中自動觸發 */}
+                    {/* <button className="SRFilterRangeConfirmButtom" onClick={applyFilters}>套用</button> */}
                 </div>
             </div>
-            <div className="SRDisplay">
-                <div className="SRDisplayPic">
-                    <img src={images} alt={"展示"} />
-                </div>
-                <div className="SRDisplayProduct">
-                    {productDetails.map((item, index) => (
-                        <NavLink to="/GoodsDetailPage" className="SRLink">
-                            <div key={index} className={item.className}>
-                                {item.value}
+
+            {/* 檢查 displayData 是否存在且有內容 */}
+            {displayData && displayData.length > 0 ? (
+                displayData.map((item, index) => (
+                    <div className="SRDisplay" key={item.pId || index}> {/* 使用 pId 作為 key，如果沒有則用 index */}
+                        <div className="SRDisplayPic">
+                            {/* 確保 item.images 是一個有效的圖片路徑 */}
+                            <img src={item.images || 'placeholder.jpg'} alt={"商品"} /> 
+                        </div>
+                        <NavLink to={`/GoodsDetailPage?pId=${item.pId}`} className="SRLink">
+                            <div className="SRDisplayProduct">
+                                <div className="SRDProBrand">{item.brand}</div>
+                                <div className="SRDProName">{item.pName}</div>
+                                <div className="SRDProPrice">
+                                    {/* 確保 item.price 存在且格式正確 */}
+                                    <span className="SRDProOriPrice">{item.price !== null ? `$${item.price.toFixed(2)}` : 'N/A'}</span>
+                                </div>
+                                <div className="SRDProRate">
+                                    <ImStarFull size={15} color="gold" />
+                                    <span className="SRDProRScore">&nbsp;{item.review !== null ? item.review.toFixed(1) : 'N/A'}</span>
+                                </div>
                             </div>
                         </NavLink>
-                    ))}
-                </div>
-
-            </div>
+                    </div>
+                ))
+            ) : (
+                <div className="no-results-message">找不到符合條件的商品。</div>
+            )}
         </div>
-
     );
 }
 

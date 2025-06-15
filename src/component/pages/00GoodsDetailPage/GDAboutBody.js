@@ -1,15 +1,21 @@
 import "./css/GDABody.css"
-import { useState } from "react";
-import { ImStarFull} from "react-icons/im";
+import { useEffect, useState } from "react";
+import { ImStarFull } from "react-icons/im";
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io";
-
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 const FixStyle = {
     position: "relative"
 }
 
 const GDAboutBody = () => {
-
+    // 使用 useLocation Hook 取得當前 URL 的 location 物件
+    const location = useLocation();
+    
+    // 建立 URLSearchParams 物件來解析查詢參數
+    const queryParams = new URLSearchParams(location.search);
+    const pId = queryParams.get('pId'); 
     const images = [
         require('./pic/ex1.png'),
         require('./pic/ex2.png'),
@@ -30,6 +36,23 @@ const GDAboutBody = () => {
     };
 
     const visibleImages = images.slice(startIndex, startIndex + MAX_VISIBLE)
+
+    const [formData, setFormData] = useState([]);
+    
+
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/gooddetail/product/${pId}`)
+            .then((response) => {
+                console.log(response)
+                const data = response.data;
+                setFormData(data.results);   
+            })
+            .catch((error) => {
+                console.error("拿API資料失敗", error);
+            });
+    }, []);
+
+        
 
     return (
         <div className="GDAbout">
@@ -57,25 +80,26 @@ const GDAboutBody = () => {
                     )}
                 </div>
             </div>
-            <div className="GDAText">
+            <div className="GDAText" key={formData.pName}>
                 <div className="GDAContext">
-                    <div className="GDABrand">品牌名</div>
-                    <div className="GDAName">商品名</div>
+                    <div className="GDABrand">{formData.brand}</div>
+                    <div className="GDAName">{formData.pName}</div>
                     <br /><br />
                     <div className="GDAPrice">
-                        <span className="GDAOriginalPrice">原價</span>
-                        <span className="GDADiscount">特價</span>
+                        <span className="GDAOriginalPrice">{formData.price}</span>
+                        <span className="GDADiscount">500</span>
                     </div>
                     <br />
                     <span className="GDARate">
                         < ImStarFull size={20} color='gold' />
-                        <span className="GDAScore">&nbsp;4.5</span>
+                        <span className="GDAScore">&nbsp;{formData.review}</span>
                     </span>
                     <br /><br /><br /><br />
                 </div>
                 <div className="GDAAddLikeButton">
                     <button className="GDAAddLike">加入關注</button>
                 </div>
+                
             </div>
         </div>
     );

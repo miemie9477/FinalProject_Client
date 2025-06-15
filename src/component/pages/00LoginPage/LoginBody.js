@@ -2,63 +2,112 @@ import "./css/LoginPage.css"
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { LoginContext } from "../../../ContextAPI";
+import { useForm } from 'react-hook-form';
+import Button from 'react-bootstrap/Button';
 
 const FixStyle = {
     position: "relative"
 }
 
-const LoginBody = ({pNo}) => {
+const LoginBody = () => {
+    const { login, setLogin } = useContext(LoginContext);
 
-    // const [productInfo, setProductInfo] = useState([]);
+    const navigate = useNavigate();
 
-    // useEffect(() =>{
-    //     const check = async () =>{
-    //         try{
-    //             const tId = getCookie('tId');
-    //             if(tId === null){
-    //                 const checkCart = `${process.env.REACT_APP_API_URL}/setCookie/createTId`;
-    //                 const checkCartResponse = await axios.get(checkCart,{ withCredentials: true });
-    //                 console.log(checkCartResponse.data);
-    //             }
-    //             console.log('tId:', tId);
+    const { register, handleSubmit, setError, formState: { errors } } = useForm({
+        mode:"onSubmit",
+        reValidateMode:"onBlur",
 
-    //             const url = `${process.env.REACT_APP_API_URL}/menu/loadMenu`;
-    //             const menuResponse = await axios.get(url, { withCredentials: true })
-    //             console.log("get menu:" , menuResponse.data)
-    //             setProductInfo(menuResponse.data);
-                
-    //         }
-    //         catch(error){
-    //             console.log(error);
-    //         }
-    //     }
-    //     check();
-    // }, [])
+    });
 
-    // function getCookie(name) {
-    //     const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    //     if (match) {
-    //         return match[2];
-    //     }
-    //     return null; // 如果沒找到該 cookie，則返回 null
-    // }
+
+    const onSubmit = (data) => { 
+        console.log(data);
+        const url = `${process.env.REACT_APP_API_URL}/loginpage/login`;
+        const info = {
+            account : data.LBinputAccount,
+            password: data.LBinputPassword
+        }
+        console.log("url:", url)
+        console.log("info:", info)
+        axios.post(url, info)
+        .then(
+            response=>{
+                console.log("Status Code:", response.status);            
+                // console.log(response)
+                if(response.status === 200){
+                    alert('會員登入');
+                    setLogin(1);
+                    const { token, refresh_token } = response.data; // 從回應中解構出 token 和 refresh_token
+                    console.log("Token:", token);
+                    console.log("Refresh Token:", refresh_token);
+                    localStorage.setItem('accessToken', token); // 儲存訪問 Token
+                    localStorage.setItem('refreshToken', refresh_token); // 儲存刷新 Token (如果需要)
+                    console.log("Token 已儲存到 localStorage!");
+                    navigate('/')
+                    
+                }
+                // else if(response.status === 401){
+
+                // }
+                else if(response.status === 401){
+                    setError("LBinputPassword",{type:"custom", message:"帳號或密碼錯誤"})
+                    // alert("登入失敗");
+                }
+            }
+        ).catch(
+            error =>{
+                console.log(error);
+                console.log("Status Code:", error.response.status);    
+                console.log(error.response.data.message);
+                if (error.response && error.response.status === 401){
+                    setError("LBinputAccount",{type:"custom", message:"帳號或密碼錯誤"})
+                    setError("LBinputPassword",{type:"custom", message:"帳號或密碼錯誤"})
+                    // alert('登入失敗，帳號或密碼錯誤');
+                }
+                else
+                {
+                    throw error;
+                }
+                 
+            }
+        )
+    }
 
     return(
         <div className="LoginBody">
             <div className="LBTitle">登入</div>
-            <div className="LBInputArea">
-                <div className="LBIArow">
-                    <div className="LBIATitle">帳號</div>
-                    <div className="LBIAtext"><input type="text" placeholder="請輸入帳號名稱"/></div>
+            <form name="login" onSubmit={handleSubmit(onSubmit)}>
+                <div className="LBInputArea">
+                    <div className="LBIArow">
+                        <div className="LBIATitle">帳號</div>
+                        <div className="LBIAtext">
+                            <input type="text" placeholder="請輸入帳號名稱" id="LBinputAccount" 
+                            {...register("LBinputAccount", {required: true, minLength: {value: 8, message: "帳號至少會有8位字元"}, maxLength: {value: 20, message: "帳號不會超過20位字元"}})} />
+                            {!!errors.LBinputAccount && <p>{errors.LBinputAccount.message.toString() || "請輸入帳號"}</p> }
+                        </div>
+                    </div>
+                    <div className="LBIArow">
+                        <div className="LBIATitle">密碼</div>
+                        <div className="LBIAtext">
+                            <input type="text" placeholder="請輸入密碼" id="LBinputPassword"
+    {...register("LBinputPassword", {
+        required: true, 
+        // minLength: {value: 8, message: "密碼至少會有8位字元"}, // 暫時註解掉密碼最小長度限制
+        // maxLength: {value: 20, message: "密碼不會超過20位字元"}  // 暫時註解掉密碼最大長度限制
+    })} />
+{!!errors.LBinputPassword && <p>{errors.LBinputPassword.message.toString() || "請輸入密碼"}</p> }
+                        </div>
+                    </div>
+                    <div style={{display:"flex"}}>
+                        <NavLink to="/RegisterPage"><button className="LBIAConfirmButtom LBIAforColorRegisterButtom" variant="light" style={{backgroundColor:"#FFDAD0"}}>註冊帳號</button></NavLink>
+                        <button className="LBIAConfirmButtom LBIAforColorConfirmButtom"  type="submit" style={{backgroundColor:"#ED8A8A"}}>確認</button>
+                    </div>
                 </div>
-                <div className="LBIArow">
-                    <div className="LBIATitle">密碼</div>
-                    <div className="LBIAtext"><input type="text" placeholder="請輸入密碼"/></div>
-                </div>
-                <div style={{display:"flex"}}>
-                    <button className="LBIAConfirmButtom">確認</button>
-                </div>
-            </div>
+            </form>
         </div>
     );
 }

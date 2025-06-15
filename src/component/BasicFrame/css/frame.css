@@ -175,6 +175,13 @@ body{
     color: #FFFFFF;
 }
 
+.TBSearchBoxForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .TBSearchBox{
     font-size: 1.25vw;
     line-height: 1.25vw;

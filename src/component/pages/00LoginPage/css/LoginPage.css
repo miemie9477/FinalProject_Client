@@ -60,9 +60,9 @@
 
 .LBIAConfirmButtom{
     padding: 0.8vw 1.3vw;
-    background-color: #ED8A8A;
+    /* background-color: #ED8A8A; */
     border: none;
-    color: white;
+    /* color: white; */
     font-weight: bold;
     font-size: 1.25vw;
     line-height: 1.25vw;
@@ -72,6 +72,27 @@
     transition: color 0.2s ease-in-out; 
 }
 
-.LBIAConfirmButtom:hover{
+.LBIAforColorConfirmButtom{
+    color: white;
+}
+
+.LBIAforColorRegisterButtom{
+    color: rgb(84, 49, 49)
+}
+
+.LBIAforColorConfirmButtom:hover{
     color: rgb(84, 49, 49);
+}
+
+.LBIAforColorRegisterButtom:hover{
+    color: white
+}
+
+.LBInputArea p{
+    color: red;
+    text-align: right;
+    margin: 0.35vw 0 0 0;
+    font-size: 1.25vw;
+    line-height: 1.25vw;
+    
 }

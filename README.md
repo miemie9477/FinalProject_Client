@@ -1,3 +1,24 @@
+- 搜尋結果頁通常會正常顯示，但如果點進去商品頁，在返回上一頁(搜尋結果頁)，有時候會跑不出來
+- 類別一、類別二那邊，點進去是沒有篩選條件的，其他我都做好了
+- 賴的熱門商品我在努力溝通中
+
+# 6/14 待辦
+- [ ] clientPage串接
+- [ ] gooddetail檢查API
+- [ ] hotproducts 查看所有商品問題
+- [ ] 修改前端對於登入狀態的問題
+- [x] cId session存放問題
+> 使用payload得到current user clientId
+- [x] searching page問題很大
+- [x] TopBar category 串API
+> 會有一點卡
+- [x] 修改 GoodDetail + 確定*homepage* + *goodpage* navlink問題
+- [x] homepage hotproduct渲染問題
+- [ ] 檢查所有http status跟前端處理的方式
+- [ ] 先確定全部API跟前端
+- [ ] 看redis + docker
+
+ 
 # 專案規格
 1. 命名頁面名稱時外層請命名為 XXXPage.js ，內層請命名為 XXXBody.js，然後頁面主體請寫在內層裡
 
@@ -34,34 +55,6 @@
 > npm install react-hook-form
 > npm install axios
 > npm install date-fns
-
-## Directors
-其他系統上線要用的資料麻煩 @Andybobo 加上去
-```
-project/
-|──Client
-|   └──src/     # 代碼目錄
-|       └──component/   #所有元件存放處
-|           |
-|           |──BasicFrame/  #誤動，存放網頁基本架構，請勿擅自增加檔案或修改
-|           |   |
-|           |   |──css/         #用來存放BasicFrame的css檔案
-|           |   |──pic/         #用來存放BasicFrame有關的圖檔
-|           |   |──frame.js     #主要文件
-|           |   └──...          #其他資料夾/檔案    
-|           |     
-|           └──pages/       #網頁其他頁面
-|               |
-|               |──HomePage/    #(舉例說明用)用來存放主畫面的頁面
-|               |──LoginPage/  #(舉例說明用)依照存放的類型作命名
-|               └──...          #其他
-|──Server
-|   |──*沒寫過python 後端不知道有沒有需要entry    #entry
-|   |──pages/
-|   |   └── (function page).py  #API function
-|   └──module/                  #database connection
-|       └──db_connect.py
-```
 
 <hr>
 
