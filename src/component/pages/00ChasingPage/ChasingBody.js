@@ -1,7 +1,7 @@
 import "./css/ChasingPage.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import ex1 from './pic/ex1.png'; // 根據你的位置調整路徑
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 import axios from "axios";
 
 const ChasingBody = () => {
@@ -83,7 +83,7 @@ const ChasingBody = () => {
             });
             
             // 根據後端返回的 message 或 status 判斷是新增還是取消
-            alert(`${response.data.message || '操作成功'}: ${pId}`);
+            alert(`${response.data.message || '操作成功'}`);
             console.log("追蹤狀態切換成功響應:", response.data);
             
             // 操作成功後，重新獲取列表，更新 UI
@@ -108,14 +108,6 @@ const ChasingBody = () => {
         );
     }
 
-    if (error) {
-        return (
-            <div className="ChasingBody">
-                <div className="error-message">{error}</div>
-            </div>
-        );
-    }
-
   return (
     <div className="ChasingBody">
       <div style={{ display: "flex", gap: "0.5vw" }}>
@@ -129,27 +121,25 @@ const ChasingBody = () => {
 
       <hr className="Chr-line" />
 
-      <div className="CBInputArea">
-            {/* 确保这里是 .map 循环，且按钮在每个 product-card 内部 */}
-            {trackList.length > 0 ? (
-                trackList.map((product) => (
-                    <div className="product-card" key={product.pId}>
+      {trackList.length > 0 ? (
+            trackList.map((product) => (
+                // 將整個 CBInputArea 和其內容放在 map 內部
+                // 注意：這裡的 key 應該放在最外層的重複元素上，所以放在 CBInputArea 上
+                <div className="CBInputArea" key={product.pId}> 
+                    <div className="product-card">
                         {/* 商品圖片 */}
                         <img src={product.imageUrl || ex1} alt={product.pName || "商品圖片"} className="product-image" />
 
-                        
+                        {/* 商品資訊區塊 */}
                         <div className="product-info">
                             <div className="product-brand">{product.brand || '未知品牌'}</div>
                             <div className="product-name">{product.pName || '未知商品'}</div>
                             <div className="product-price">
                                 <span className="current-price">目前價格: ${product.price ? product.price.toFixed(2) : 'N/A'}</span>
-                                {/* 如果有原價/特價，可以在這裡添加 */}
-                                {/* <span className="original-price">原價 $1000</span> */}
-                                {/* <span className="special-price">特價 $799</span> */}
                             </div>
-                            {/* 如果有評分，可以在這裡添加 */}
-                            {/* <div className="product-rating">⭐ 4.5</div> */}
+                            <div className="product-rating">⭐{product.review}</div>
                         </div>
+
                         <button
                             className="CBIAUnfollowButtom"
                             onClick={() => handleToggleTrack(product.pId)}
@@ -157,12 +147,14 @@ const ChasingBody = () => {
                             取消追蹤
                         </button>
                     </div>
-                ))
-            ) : (
-                // 如果沒有追蹤商品，顯示提示訊息
+                </div>
+            ))
+        ) : (
+            // 如果沒有追蹤商品，仍然顯示這個訊息在一個 CBInputArea 內 (非重複)
+            <div className="CBInputArea">
                 <div className="no-tracking-data">目前沒有追蹤任何商品。</div>
-            )}
-        </div>
+            </div>
+        )}
     </div>
   );
 };

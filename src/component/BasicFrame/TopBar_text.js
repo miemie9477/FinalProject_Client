@@ -46,7 +46,7 @@ const TopBarText = () => {
             setLogin(0);
             console.log("未偵測到 Token，登入狀態設定為：未登入");
         }
-    }, [setLogin]); 
+    }, []); 
  
     const handleLogout = () => {
         localStorage.removeItem('accessToken'); // 移除 access token
@@ -92,7 +92,6 @@ const TopBarText = () => {
         axios.post(url, info)
         .then(
             response=>{
-                console.log("Status Code:", response.status);
                 console.log("data:", response.data.results)             
                 if(response.status === 200){
                     setSearchdata(response.data.results)
@@ -122,7 +121,6 @@ const TopBarText = () => {
         let apiUrl = `${process.env.REACT_APP_API_URL}/goodpage/product`;
         if (backendCategory && backendCategory !== "all") {
             apiUrl += `?category=${encodeURIComponent(backendCategory)}`;
-            console.log(`正在請求類別商品: ${backendCategory}`);
         } else {
             console.log("正在請求全部商品");
         }
@@ -130,10 +128,9 @@ const TopBarText = () => {
         axios.get(apiUrl)
             .then(res => {
                 const data = res.data
-                console.log("載入分類商品成功:", data.results);
+                console.log("載入分類商品成功:", res.data);
                 if (res.data) {
                     setSearchdata(res.data);
-                    console.log("分類商品結果已存入 Context:", Searchdata);
                     navigate('/SearchResultPage'); // 導航到搜尋結果頁
                 } else {
                     setSearchdata([]); // 沒有結果則清空 Context
@@ -200,9 +197,6 @@ const TopBarText = () => {
                     <div className="CartCss">
                         {LoginIdentity()} {/* 這裡會渲染新的下拉選單或登入按鈕 */}
                     </div>
-
-                    {/* 您可以使用這個按鈕來測試登入/登出狀態，實際部署時可能移除 */}
-                    {/* <button onClick={Test_setLogin} style={{marginLeft: '10px'}}> ChangeLogin，{login} </button> */}
                     
                 </div>
             </div>

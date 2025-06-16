@@ -14,10 +14,12 @@
   overflow: hidden;
   box-sizing: border-box;
   border-radius: 0.5vw;
+  margin-top: 2vw;
 }
 
 /* 商品 */
 .product-card {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 1.5vw;
@@ -48,13 +50,13 @@
 /* 商品名稱 */
 .product-name {
   font-weight: bold;
-  font-size: 1.3vw;
+  font-size: 1.5vw;
   color: #000;
 }
 
 /* 價格區 */
 .product-price {
-  font-size: 1.1vw;
+  font-size: 1.3vw;
 }
 
 .original-price {
@@ -71,7 +73,7 @@
 /* 評價 */
 .product-rating {
   font-size: 1.1vw;
-  color: #fbc02d;
+  color: #fbc12dcf;
 }
 
 /* 設定按鈕 */

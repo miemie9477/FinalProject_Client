@@ -3,22 +3,24 @@ import ProductCards from "./ProductCards";
 import "./css/HomePage.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import {PidContext} from "../../../ContextAPI"; //這個是相對路徑，可能會有不一樣要注意
-
-
+import { SearchdataContext } from '../../../ContextAPI';
+import { useNavigate } from 'react-router-dom';
 const HotProducts = () => {
-  const { pid, setPid } = useContext(PidContext);
   
   const [hotProducts, setHotProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [limit, setLimit] = useState(10); // 預設顯示前 10 筆
   
+  
+  const { Searchdata, setSearchdata } = useContext(SearchdataContext);
+
   // 載入熱門商品（根據 limit 動態改變）
   const fetchProducts = (limitVal) => {
     setLoading(true);
     axios
       .get(`${process.env.REACT_APP_API_URL}/homepage/product?sort=clickTimes&limit=${limitVal}`)
       .then((res) => {
+        console.log("載入熱門商品成功:", res.data);
         if (res.data) {
           const formatted = res.data.map((p) => ({
             Id: p.pId,
@@ -43,9 +45,20 @@ const HotProducts = () => {
     fetchProducts(limit);
   }, [limit]);
   
-  useEffect(() => {
-    console.log("目前的 hotProducts 狀態:", hotProducts);
-  }, [hotProducts]);
+
+  const handleViewAllProducts = () => {
+    axios.get(`${process.env.REACT_APP_API_URL}/goodpage/product?category=`)
+      .then(res => {
+        console.log("載入所有商品:", res.data);
+        setSearchdata(res.data); // 將所有商品數據存入 SearchdataContext
+        console.log("所有商品結果已存入 Context 並導航到搜尋結果頁");
+         
+      })
+      .catch(err => {
+        console.error("載入所有商品失敗:", err);
+        setSearchdata([]); 
+      });
+  };
 
   return (
     <div className="HotProducts">
@@ -82,7 +95,7 @@ const HotProducts = () => {
 
       <div className="HPButton">
         <NavLink to="/SearchResultPage">
-          <button>查看所有商品</button>
+          <button onClick={handleViewAllProducts}>查看所有商品</button>
         </NavLink>
       </div>
     </div>

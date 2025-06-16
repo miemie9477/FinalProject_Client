@@ -14,11 +14,8 @@ const HomeBody = () => {
   return (
     <div className="HomeBody">
       {" "}
-      {/* className 請寫成單字首字母大寫的形式 */}
       <div className="EBYourCodeHere">
         {" "}
-        {/* 內層的 className 請加上上層 className 的首字母大寫*/}
-        {/* ↑↑比如說上面這個className，因為外層有className="HomeBody，所以在前面加上EB */}
       </div>
     </div>
   );

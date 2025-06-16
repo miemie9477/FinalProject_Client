@@ -1,11 +1,8 @@
-- 搜尋結果頁通常會正常顯示，但如果點進去商品頁，在返回上一頁(搜尋結果頁)，有時候會跑不出來
-- 類別一、類別二那邊，點進去是沒有篩選條件的，其他我都做好了
-- 賴的熱門商品我在努力溝通中
-
+## 6
 # 6/14 待辦
-- [ ] clientPage串接
+- [x] clientPage串接
 - [x] gooddetail檢查API
-- [ ] hotproducts 查看所有商品問題
+- [x] hotproducts 查看所有商品問題
 - [x] 修改前端對於登入狀態的問題
 - [x] cId session存放問題
 > 使用payload得到current user clientId
