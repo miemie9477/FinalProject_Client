@@ -1,5 +1,51 @@
-## 6
-# 6/14 待辦
+## 6/17 開發日誌 BY咩
+> * 網頁登入
+>   * 帳號:Test_0001
+>   * 密碼: Test_0001
+0. 表單驗證的部分，看要不要回去使用react-hook-form或是做其他處理
+    > 現在發現如果單純做在後端，像是register的頁面，要檢查的欄位比較多，他沒辦法一次告訴你哪幾個欄位有問題，他只會一個一個報
+1. 畫面css修改有放在群組(比較嚴重的)，其他就按照前端組長審美去調整
+2. *TopBar_text.js* 與 *SearchResult.js* 說明
+    >   現在TopBar傳送 Query Parameters給 SearchResults，告訴SearchResult要打哪個API，傳送哪個arg給後端，由SearchResults去執行功能與邏輯
+    > * 改善:
+    >   1. 直接複製網址貼上會找不到資料
+    >   2. 重新整理頁面，一樣可以得到category的物件
+3. **現在大部分的功能完成度**:
+    * 如果正常操作的話，基本可用
+    * API串接部分，沒有特別針對後端的error status做處理
+    * register跟修改client我沒有全部測，再麻煩了
+4. 盡量不要把css寫在js檔案裡，我vs code有時候會抽風，一整個收不起來Q_Q
+5. 新版docker上線囉，飄再幫我測試測試
+
+## Docker 說明(6/17)
+* 環境簡介(推薦，當然也可以在wsl上安裝)
+    * 安裝 docker desktop
+    * WSL: Debian 12
+* docker compose 簡介
+    * 內容物: flask-app(backend), db, redis(目前沒有含前端)
+        > 想說等前端完全debug完再包
+    * SQL Server 2022
+    * ODBC 18
+    * Python 3.10
+* 使用手冊
+    * cd至serverclient
+    * 第一次執行`docker compose up --build`
+        > 第一次會跑比較久，大概要幾分鐘
+
+        > build只要第一次做就好
+    * 停止容器按control+C
+    * 移除容器，開另一個terminal，`cd serverclient`輸入`docker compose down`
+* **提醒**: 要使用docker命令要啟動docker desktop，沒有要使用建議關閉(建議左下角按Quit，不要按右上角叉叉)
+    > 因為我嚴重懷疑由於docker沒關導致我打LOL很卡 
+* 其他:
+    * Docker資料庫狀況?
+        > 可以去我github看init.sql，都只有我自己設的簡單假資料
+    * Docker可以幹嘛?
+        > 前端串API不用搞環境，大概就 醬，目前
+    * 本次新增: redis
+
+
+## 6/14 待辦
 - [x] clientPage串接
 - [x] gooddetail檢查API
 - [x] hotproducts 查看所有商品問題
@@ -13,8 +59,9 @@
 - [x] homepage hotproduct渲染問題
 - [ ] 檢查所有http status跟前端處理的方式
 - [ ] 先確定全部API跟前端
-- [ ] 看redis + docker
+- [x] 看redis + docker
 
+<hr/>
  
 # 專案規格
 1. 命名頁面名稱時外層請命名為 XXXPage.js ，內層請命名為 XXXBody.js，然後頁面主體請寫在內層裡
