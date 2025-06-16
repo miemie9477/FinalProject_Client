@@ -42,11 +42,10 @@ const LoginBody = () => {
                     alert('會員登入');
                     setLogin(1);
                     const { token, refresh_token } = response.data; // 從回應中解構出 token 和 refresh_token
-                    console.log("Token:", token);
-                    console.log("Refresh Token:", refresh_token);
+                    
                     localStorage.setItem('accessToken', token); // 儲存訪問 Token
                     localStorage.setItem('refreshToken', refresh_token); // 儲存刷新 Token (如果需要)
-                    console.log("Token 已儲存到 localStorage!");
+                    
                     navigate('/')
                     
                 }

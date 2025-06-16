@@ -4,9 +4,9 @@
 
 # 6/14 待辦
 - [ ] clientPage串接
-- [ ] gooddetail檢查API
+- [x] gooddetail檢查API
 - [ ] hotproducts 查看所有商品問題
-- [ ] 修改前端對於登入狀態的問題
+- [x] 修改前端對於登入狀態的問題
 - [x] cId session存放問題
 > 使用payload得到current user clientId
 - [x] searching page問題很大

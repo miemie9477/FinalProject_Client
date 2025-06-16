@@ -248,3 +248,63 @@ li button:hover{
     background-color: white;
     color: rgb(84, 49, 49);
 }
+
+/* frame.css */
+
+/* 調整下拉選單按鈕的樣式 */
+.TopBarDropdownToggle {
+    /* 這裡可以放你希望按鈕的樣式 */
+    /* 例如： */
+    padding: 0.375rem 0.75rem; /* 類似 Button 的 padding */
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    border: 1px solid transparent; /* 移除邊框 */
+    background-color: transparent; /* 背景透明 */
+    color: black; /* 字體顏色 */
+    /* 移除 Bootstrap 預設的箭頭 */
+    &::after { 
+        display: none !important; 
+    }
+}
+
+.TopBarDropdownToggle:hover {
+    background-color: #f8f9fa; /* 懸停時的背景色 */
+}
+
+/* 調整下拉選單內容的樣式 */
+.TopBarDropdownMenu {
+    /* 設置背景色、陰影等 */
+    background-color: white;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border: none; /* 移除邊框 */
+    border-radius: 0.25rem;
+    padding: 0.5rem 0;
+    min-width: 10rem; /* 設置最小寬度 */
+    z-index: 1000; /* 確保在其他內容之上 */
+}
+
+/* 調整下拉選單項目的樣式 */
+.TopBarDropdownItem {
+    color: black;
+    padding: 0.5rem 1rem;
+    text-decoration: none; /* 移除 NavLink 的下劃線 */
+    display: block; /* 讓整個區域可點擊 */
+}
+
+.TopBarDropdownItem:hover,
+.TopBarDropdownItem:focus {
+    background-color: #e9ecef; /* 懸停和聚焦時的背景色 */
+    color: black; /* 確保文字顏色不變 */
+}
+
+/* 如果要移除 NavLink 的藍色預設文字顏色和下劃線 */
+.RightCss .nav-link {
+    color: black; /* 或你想要的顏色 */
+    text-decoration: none;
+}
+
+.RightCss .nav-link:hover {
+    color: #0056b3; /* 懸停顏色 */
+}
+

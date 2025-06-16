@@ -227,6 +227,32 @@
   }
   
 
-  
+ /* SettingPage.css */
+
+/* 其他現有樣式... */
+
+.error-message {
+    color: red;
+    font-size: 1.5vw; /* 根據你的設計調整大小 */
+    margin-top: 0.2vw;
+    margin-left: 1vw; /* 或根據需要調整位置 */
+    /* 確保錯誤訊息不會破壞布局 */
+    grid-column: 2 / -1; /* 如果是用 grid 布局 */
+    /* 或者在 flex 布局下，確保其在正確的位置 */
+    width: 100%; /* 確保佔據完整寬度 */
+    text-align: left; /* 可以讓錯誤訊息靠右 */
+}
+
+/* 確保輸入框在驗證失敗時有視覺提示 */
+.SBIAtext input.ng-invalid,
+.SBIAtext select.ng-invalid { /* 如果你沒有 ng-invalid，移除它，或者用 react-hook-form 的 error 類名 */
+    border: 1px solid red;
+}
+
+/* 如果你的輸入框沒有邊框，考慮添加紅色的底線或陰影 */
+.SBIAtext input:focus.ng-invalid,
+.SBIAtext select:focus.ng-invalid {
+    box-shadow: 0 0 0 0.1vw rgba(255, 0, 0, 0.25);
+} 
   
   
