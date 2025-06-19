@@ -294,7 +294,7 @@ const SearchResult = () => {
                                 <div className="SRDProBrand">{item.brand}</div>
                                 <div className="SRDProName">{item.pName}</div>
                                 <div className="SRDProPrice">
-                                    <span className="SRDProOriPrice">{item.price !== null ? `$${item.price.toFixed(2)}` : 'N/A'}</span>
+                                    <span className="SRDProDisiPrice">{item.price !== null ? `$${item.price.toFixed(2)}` : 'N/A'}</span>
                                 </div>
                                 <div className="SRDProRate">
                                     <ImStarFull size={15} color="gold" />

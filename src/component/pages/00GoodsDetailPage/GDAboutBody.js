@@ -198,8 +198,8 @@ const GDAboutBody = () => {
                     <div className="GDAName">{productData.pName}</div>
                     <br /><br />
                     <div className="GDAPrice">
-                        <span className="GDAOriginalPrice">${productData.price}</span> 
-                        <span className="GDADiscount">500</span> 
+                        <span className="GDAOriginalPrice"></span> 
+                        <span className="GDADiscount">${productData.price}</span> 
                     </div>
                     <br />
                     <span className="GDARate">
